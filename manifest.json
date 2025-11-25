@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Incident Saver",
+    "version": "2.0",
+    "description": "Save incident numbers and timestamp fields from Outlook Web.",
+    "permissions": [
+        "contextMenus",
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Incident Saver"
+    },
+    "options_page": "settings.html",
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_start"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Incident Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Incident Manager</h2>
+
+    <button id="clearAll">Clear All</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Incident</th>
+          <th>Occurrence</th>
+          <th>Detection</th>
+          <th>Resolve</th>
+          <th>MTTD</th>
+          <th>MTTR</th>
+        </tr>
+      </thead>
+      <tbody id="incidentTable"></tbody>
+    </table>
+
+    <button id="exportCsv">Export CSV</button>
+    <button id="openSettings" style="margin-left: 10px;">⚙️ Settings</button>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
