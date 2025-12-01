@@ -8,7 +8,21 @@ function formatDuration(ms) {
     if (min > 0) return `${min}m ${sec % 60}s`;
     return `${sec}s`;
   }
-  
+
+function formatMDY(dateIso) {
+  if (!dateIso) return "-";
+  const d = new Date(dateIso);
+  if (isNaN(d)) return "-";
+
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const year = d.getFullYear().toString().slice(-2);
+  const hours = d.getHours();
+  const mins = d.getMinutes().toString().padStart(2, "0");
+
+  return `${month}/${day}/${year} ${hours}:${mins}`;
+}
+
   async function loadIncidents() {
     chrome.storage.local.get(null, data => {
       const table = document.getElementById("incidentTable");
@@ -20,9 +34,10 @@ function formatDuration(ms) {
 
         const row = document.createElement("tr");
   
-        const occ = inc.eventOccurrence ? new Date(inc.eventOccurrence).toLocaleString() : "-";
-        const det = inc.eventDetection ? new Date(inc.eventDetection).toLocaleString() : "-";
-        const res = inc.eventResolve ? new Date(inc.eventResolve).toLocaleString() : "-";
+        const occ = formatMDY(inc.eventOccurrence);
+        const det = formatMDY(inc.eventDetection);
+        const res = formatMDY(inc.eventResolve);
+
   
         const mttd = inc.mttd ? formatDuration(inc.mttd) : "-";
         const mttr = inc.mttr ? formatDuration(inc.mttr) : "-";
